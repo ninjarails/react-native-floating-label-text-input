@@ -103,13 +103,13 @@ class FloatLabelTextField extends Component {
           <View style={[styles.paddingView, this.leftPadding()]} />
           <View style={[styles.fieldContainer, this.withBorder()]}>
             <FloatingLabel visible={this.state.text}>
-              <Text style={[styles.fieldLabel, this.labelStyle()]}>{this.placeholderValue()}</Text>
+              <Text style={[styles.fieldLabel, this.labelStyle(), this.props.floatedLabelStyle]}>{this.placeholderValue()}</Text>
             </FloatingLabel>
             <TextFieldHolder withValue={this.state.text}>
               <TextInput {...this.props}
                 ref='input'
                 underlineColorAndroid="transparent"
-                style={[styles.valueText]}
+                style={[styles.valueText, this.props.valueText]}
                 defaultValue={this.props.defaultValue}
                 value={this.state.text}
                 maxLength={this.props.maxLength}
@@ -170,7 +170,7 @@ class FloatLabelTextField extends Component {
 
   placeholderValue() {
     if (this.state.text) {
-      return this.props.placeholder;
+      return this.props.placeholder.toUpperCase();
     }
   }
 
@@ -187,8 +187,7 @@ class FloatLabelTextField extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 45,
-    backgroundColor: 'white',
+    height: 54,
     justifyContent: 'center'
   },
   viewContainer: {
@@ -200,7 +199,7 @@ const styles = StyleSheet.create({
   },
   floatingLabel: {
     position: 'absolute',
-    top: 0,
+    top: 5,
     left: 0
   },
   fieldLabel: {
@@ -210,7 +209,6 @@ const styles = StyleSheet.create({
   },
   fieldContainer: {
     flex: 1,
-    justifyContent: 'center',
     position: 'relative'
   },
   withBorder: {
